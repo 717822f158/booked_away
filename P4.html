@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Selection - Travel Booking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles - Same as index.html */
+        .header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 12px 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: #fbbf24;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .nav {
+            display: none;
+        }
+
+        .nav a {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover {
+            color: #2563eb;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-btn {
+            background: none;
+            border: none;
+            color: #6b7280;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: color 0.2s;
+        }
+
+        .header-btn:hover {
+            color: #2563eb;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 24px 16px;
+        }
+
+        /* Search Summary */
+        .search-summary {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-summary h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .search-summary p {
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .search-summary strong {
+            color: #374151;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #111827;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            color: #374151;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            background: #e5e7eb;
+        }
+
+        .filter-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        /* Carousel Navigation */
+        .carousel-nav-container {
+            display: flex;
+            gap: 12px;
+        }
+
+        .carousel-nav {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .carousel-nav:hover {
+            background: #f3f4f6;
+            border-color: #d1d5db;
+        }
+
+        .carousel-nav:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .carousel-nav svg {
+            width: 20px;
+            height: 20px;
+            color: #374151;
+        }
+
+        /* Carousel Container */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .carousel-row {
+            display: flex;
+            transition: transform 0.5s ease;
+            margin-bottom: 24px;
+        }
+
+        /* Room Card */
+        .room-card {
+            flex: 0 0 calc(25% - 16px);
+            margin-right: 16px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .room-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .room-card.hidden {
+            display: none;
+        }
+
+        .room-image {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .room-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .room-card:hover .room-image::after {
+            opacity: 1;
+        }
+
+        .room-content {
+            padding: 16px;
+        }
+
+        .room-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .room-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .room-type {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .room-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2563eb;
+            margin-left: auto;
+        }
+
+        .room-price-unit {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 400;
+        }
+
+        .room-features {
+            margin-bottom: 16px;
+        }
+
+        .room-features h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .feature-icon {
+            width: 16px;
+            height: 16px;
+            color: #10b981;
+        }
+
+        .room-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .select-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .select-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .view-details-btn {
+            background: none;
+            color: #2563eb;
+            border: 1px solid #2563eb;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .view-details-btn:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* Carousel Indicators */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .carousel-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d1d5db;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .carousel-indicator.active {
+            background: #2563eb;
+            transform: scale(1.2);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6b7280;
+            padding: 4px;
+        }
+
+        .close-btn:hover {
+            color: #374151;
+        }
+
+        .booking-summary {
+            margin-bottom: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding: 8px 0;
+        }
+
+        .summary-row:last-child {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 12px;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .cancel-btn {
+            background: #f3f4f6;
+            color: #374151;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .confirm-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .confirm-btn:hover {
+            background: #059669;
+        }
+.reserve-hotels-btn {
+    background: #054496;
+    border: 1px solid #0c1886dc;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 12px;
+}
+
+.reserve-hotels-btn:hover {
+    background: #52669c;
+    border-color: #4259db;
+}
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .nav {
+                display: flex;
+                gap: 24px;
+            }
+
+            .room-image {
+                height: 160px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .room-card {
+                flex: 0 0 calc(33.333% - 16px);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .room-card {
+                flex: 0 0 calc(50% - 16px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .room-card {
+                flex: 0 0 calc(100% - 16px);
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .carousel-nav-container {
+                margin-top: 16px;
+                align-self: center;
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #2563eb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header - Same as index.html -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo">
+                    
+                    <span class="logo-text">Bookedaway</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html">Shop travel</a>
+                </nav>
+            </div>
+            <div class="header-right">
+               
+                <button class="header-btn">INR</button>
+                <button class="header-btn">List your property</button>
+               
+                <button class="header-btn">Trips</button>
+               
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Search Summary -->
+        <div class="search-summary" id="searchSummary">
+            <h2>Room Selection</h2>
+            <p>Choose your preferred room type and amenities</p>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div>
+               <h3 class="filter-title">Filter by Room Type</h3>
+<div class="filter-buttons">
+    <button class="filter-btn active" data-filter="all">All Rooms</button>
+    <button class="filter-btn" data-filter="single">Single Room</button>
+    <button class="filter-btn" data-filter="double">Double Room</button>
+    <button class="filter-btn" data-filter="large">Large Suite</button>
+    <button class="filter-btn" data-filter="villa">Villa</button>
+    <button class="reserve-hotels-btn" onclick="goToHotelsPage()">Reserve by Hotels</button>
+</div>
+            </div>
+            <div class="carousel-nav-container">
+                <button class="carousel-nav prev-btn" id="prevBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m15 18-6-6 6-6"/>
+                    </svg>
+                </button>
+                <button class="carousel-nav next-btn" id="nextBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m9 18 6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Carousel Container -->
+        <div class="carousel-container">
+            <!-- First Row -->
+            <div class="carousel-row" id="carouselRow1">
+                <!-- Room cards will be dynamically added here -->
+            </div>
+            
+            <!-- Second Row -->
+            <div class="carousel-row" id="carouselRow2">
+                <!-- Room cards will be dynamically added here -->
+            </div>
+            
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators" id="carouselIndicators">
+                <!-- Indicators will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirm Your Booking</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="booking-summary">
+                <div class="summary-row">
+                    <span>Room Type:</span>
+                    <span id="summaryRoomType">-</span>
+                </div>
+                <div class="summary-row">
+                    <span>Check-in:</span>
+                    <span id="summaryCheckIn">-</span>
+                </div>
+                <div class="summary-row">
+                    <span>Check-out:</span>
+                    <span id="summaryCheckOut">-</span>
+                </div>
+                <div class="summary-row">
+                    <span>Nights:</span>
+                    <span id="summaryNights">-</span>
+                </div>
+                <div class="summary-row">
+                    <span>Price per night:</span>
+                    <span id="summaryPricePerNight">-</span>
+                </div>
+                <div class="summary-row">
+                    <span>Total Amount:</span>
+                    <span id="summaryTotal">-</span>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+                <button class="confirm-btn" onclick="confirmBooking()">Confirm Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Room data
+        const roomsData = [
+            // Single Rooms
+            {
+                id: 1,
+                name: "Cozy Single Room",
+                type: "single",
+                price: 2500,
+                image: "images/img24.jpg",
+                description: "Perfect for solo travelers"
+            },
+            {
+                id: 2,
+                name: "Modern Single Room",
+                type: "single",
+                price: 2800,
+                image: "images/img25.jpg",
+                description: "Contemporary design"
+            },
+            {
+                id: 3,
+                name: "Budget Single Room",
+                type: "single",
+                price: 2200,
+                image: "images/img26.jpg",
+                description: "Great value option"
+            },
+            {
+                id: 4,
+                name: "Premium Single Room",
+                type: "single",
+                price: 3200,
+                image: "images/img27.jpg",
+                description: "Enhanced amenities"
+            },
+            {
+                id: 5,
+                name: "Garden View Single",
+                type: "single",
+                price: 2900,
+                image: "images/img28.jpg",
+                description: "Beautiful garden views"
+            },
+            {
+                id: 6,
+                name: "City View Single",
+                type: "single",
+                price: 3100,
+                image: "images/img29.jpg",
+                description: "Urban skyline views"
+            },
+            {
+                id: 7,
+                name: "Compact Single",
+                type: "single",
+                price: 2400,
+                image: "images/img30.jpg",
+                description: "Efficient space design"
+            },
+            {
+                id: 8,
+                name: "Executive Single",
+                type: "single",
+                price: 3500,
+                image: "images/img31.jpg",
+                description: "Business traveler focused"
+            },
+            
+            // Double Rooms
+            {
+                id: 9,
+                name: "Standard Double",
+                type: "double",
+                price: 4000,
+                image: "images/img32.jpg",
+                description: "Comfortable for couples"
+            },
+            {
+                id: 10,
+                name: "Superior Double",
+                type: "double",
+                price: 4500,
+                image: "images/img33.jpg",
+                description: "Enhanced comfort"
+            },
+            {
+                id: 11,
+                name: "Deluxe Double",
+                type: "double",
+                price: 5200,
+                image: "images/img34.jpg",
+                description: "Premium experience"
+            },
+            {
+                id: 12,
+                name: "Ocean View Double",
+                type: "double",
+                price: 5800,
+                image: "images/img35.jpg",
+                description: "Stunning sea views"
+            },
+            {
+                id: 13,
+                name: "Romantic Double",
+                type: "double",
+                price: 4800,
+                image: "images/img36.jpg",
+                description: "Perfect for couples"
+            },
+            {
+                id: 14,
+                name: "Business Double",
+                type: "double",
+                price: 4700,
+                image: "images/img37.jpg",
+                description: "Work-friendly setup"
+            },
+            {
+                id: 15,
+                name: "Garden Double",
+                type: "double",
+                price: 4300,
+                image: "images/img38.jpg",
+                description: "Peaceful garden views"
+            },
+            {
+                id: 16,
+                name: "Modern Double",
+                type: "double",
+                price: 4600,
+                image: "images/img39.jpg",
+                description: "Contemporary design"
+            },
+            
+            // Large Suites
+            {
+                id: 17,
+                name: "Family Suite",
+                type: "large",
+                price: 8500,
+                image: "images/img40.jpg",
+                description: "Perfect for families"
+            },
+            {
+                id: 18,
+                name: "Junior Suite",
+                type: "large",
+                price: 7800,
+                image: "images/img41.jpg",
+                description: "Spacious comfort"
+            },
+            {
+                id: 19,
+                name: "Executive Suite",
+                type: "large",
+                price: 9200,
+                image: "images/img42.jpg",
+                description: "Business luxury"
+            },
+            {
+                id: 20,
+                name: "Luxury Suite",
+                type: "large",
+                price: 10500,
+                image: "images/img43.jpg",
+                description: "Premium amenities"
+            },
+            {
+                id: 21,
+                name: "Presidential Suite",
+                type: "large",
+                price: 12000,
+                image: "images/img44.jpg",
+                description: "Ultimate luxury"
+            },
+            {
+                id: 22,
+                name: "Penthouse Suite",
+                type: "large",
+                price: 11500,
+                image: "images/img45.jpg",
+                description: "Top floor elegance"
+            },
+            {
+                id: 23,
+                name: "Royal Suite",
+                type: "large",
+                price: 13000,
+                image: "images/img46.jpg",
+                description: "Regal experience"
+            },
+            {
+                id: 24,
+                name: "Diplomatic Suite",
+                type: "large",
+                price: 9800,
+                image: "images/img47.jpg",
+                description: "VIP treatment"
+            },
+            
+            // Villas
+            {
+                id: 25,
+                name: "Beach Villa",
+                type: "villa",
+                price: 25000,
+                image: "images/img48.jpg",
+                description: "Private beach access"
+            },
+            {
+                id: 26,
+                name: "Garden Villa",
+                type: "villa",
+                price: 22000,
+                image: "images/img49.jpg",
+                description: "Lush garden setting"
+            },
+            {
+                id: 27,
+                name: "Pool Villa",
+                type: "villa",
+                price: 28000,
+                image: "images/img50.jpg",
+                description: "Private swimming pool"
+            },
+            {
+                id: 28,
+                name: "Hillside Villa",
+                type: "villa",
+                price: 30000,
+                image: "images/img51.jpg",
+                description: "Panoramic views"
+            },
+            {
+                id: 29,
+                name: "Luxury Villa",
+                type: "villa",
+                price: 35000,
+                image: "images/img52.jpg",
+                description: "Ultimate privacy"
+            },
+            {
+                id: 30,
+                name: "Spa Villa",
+                type: "villa",
+                price: 32000,
+                image: "images/img53.jpg",
+                description: "Wellness retreat"
+            },
+            {
+                id: 31,
+                name: "Presidential Villa",
+                type: "villa",
+                price: 45000,
+                image: "images/img54.jpg",
+                description: "Head of state luxury"
+            },
+            {
+                id: 32,
+                name: "Royal Villa",
+                type: "villa",
+                price: 40000,
+                image: "images/img55.jpg",
+                description: "Fit for royalty"
+            }
+        ];
+
+        // Carousel state
+        let currentSlide = 0;
+        let filteredRooms = [...roomsData];
+        let cardsPerRow = 4;
+        let cardsPerSlide = cardsPerRow * 2; // 2 rows
+        let totalSlides = Math.ceil(roomsData.length / cardsPerSlide);
+
+        // DOM elements
+        const carouselRow1 = document.getElementById('carouselRow1');
+        const carouselRow2 = document.getElementById('carouselRow2');
+        const carouselIndicators = document.getElementById('carouselIndicators');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        // Get search parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchData = {
+            destination: urlParams.get('destination'),
+            checkIn: urlParams.get('checkIn'),
+            checkOut: urlParams.get('checkOut'),
+            travelers: urlParams.get('travelers'),
+            searchType: urlParams.get('searchType')
+        };
+
+        // Initialize carousel
+        function initCarousel() {
+            updateCardsPerRow();
+            renderRooms();
+            renderIndicators();
+            updateCarouselButtons();
+            
+            // Add window resize event listener
+            window.addEventListener('resize', () => {
+                const oldCardsPerRow = cardsPerRow;
+                updateCardsPerRow();
+                
+                if (oldCardsPerRow !== cardsPerRow) {
+                    renderRooms();
+                    renderIndicators();
+                    updateCarouselButtons();
+                }
+            });
+        }
+const loggedInUser = localStorage.getItem("loggedInUser");
+
+        // Update cards per row based on screen width
+        function updateCardsPerRow() {
+            const width = window.innerWidth;
+            
+            if (width >= 1200) {
+                cardsPerRow = 4;
+            } else if (width >= 992) {
+                cardsPerRow = 3;
+            } else if (width >= 576) {
+                cardsPerRow = 2;
+            } else {
+                cardsPerRow = 1;
+            }
+            
+            cardsPerSlide = cardsPerRow * 2; // 2 rows
+            totalSlides = Math.ceil(filteredRooms.length / cardsPerSlide);
+            
+            // Reset current slide if needed
+            if (currentSlide >= totalSlides) {
+                currentSlide = Math.max(0, totalSlides - 1);
+            }
+        }
+
+        // Render room cards
+        function renderRooms() {
+            carouselRow1.innerHTML = '';
+            carouselRow2.innerHTML = '';
+            
+            const startIndex = currentSlide * cardsPerSlide;
+            const firstRowEnd = Math.min(startIndex + cardsPerRow, filteredRooms.length);
+            const secondRowEnd = Math.min(startIndex + cardsPerSlide, filteredRooms.length);
+            
+            // First row
+            for (let i = startIndex; i < firstRowEnd; i++) {
+                const room = filteredRooms[i];
+                const roomCard = createRoomCard(room);
+                carouselRow1.appendChild(roomCard);
+            }
+            
+            // Second row
+            for (let i = startIndex + cardsPerRow; i < secondRowEnd; i++) {
+                const room = filteredRooms[i];
+                const roomCard = createRoomCard(room);
+                carouselRow2.appendChild(roomCard);
+            }
+        }
+
+        // Create room card
+        function createRoomCard(room) {
+            const card = document.createElement('div');
+            card.className = 'room-card';
+            card.setAttribute('data-room-type', room.type);
+            
+            card.innerHTML = `
+                <div class="room-image" style="background-image: url('${room.image}');">${room.type.charAt(0).toUpperCase() + room.type.slice(1)}</div>
+                <div class="room-content">
+                    <div class="room-header">
+                        <div>
+                            <h3 class="room-title">${room.name}</h3>
+                            <p class="room-type">${room.description}</p>
+                        </div>
+                        <div class="room-price">₹${room.price.toLocaleString()}<span class="room-price-unit">/night</span></div>
+                    </div>
+                    <div class="room-actions">
+                        <button class="select-btn" onclick="selectRoom('${room.type}', ${room.price})">Select</button>
+                        <button class="view-details-btn" onclick="viewRoomDetails('${room.type}')">Details</button>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Render carousel indicators
+        function renderIndicators() {
+            carouselIndicators.innerHTML = '';
+            
+            for (let i = 0; i < totalSlides; i++) {
+                const indicator = document.createElement('div');
+                indicator.className = `carousel-indicator ${i === currentSlide ? 'active' : ''}`;
+                indicator.addEventListener('click', () => goToSlide(i));
+                carouselIndicators.appendChild(indicator);
+            }
+        }
+
+        // Update carousel navigation buttons
+        function updateCarouselButtons() {
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1 || totalSlides === 0;
+        }
+
+        // Navigation functions
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                renderRooms();
+                updateIndicators();
+                updateCarouselButtons();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                renderRooms();
+                updateIndicators();
+                updateCarouselButtons();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            renderRooms();
+            updateIndicators();
+            updateCarouselButtons();
+        }
+
+        // Update indicators
+        function updateIndicators() {
+            const indicators = carouselIndicators.querySelectorAll('.carousel-indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Display search summary
+        function displaySearchSummary() {
+            const summaryElement = document.getElementById('searchSummary');
+            
+            if (searchData.destination) {
+                const checkInDate = new Date(searchData.checkIn);
+                const checkOutDate = new Date(searchData.checkOut);
+                const nights = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+                
+                summaryElement.innerHTML = `
+                    <h2>${searchData.destination}</h2>
+                    <p><strong>Check-in:</strong> ${formatDate(searchData.checkIn)} | <strong>Check-out:</strong> ${formatDate(searchData.checkOut)}</p>
+                    <p><strong>Duration:</strong> ${nights} night${nights > 1 ? 's' : ''} | <strong>Guests:</strong> ${searchData.travelers}</p>
+                `;
+            }
+        }
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get filter value
+                const filterValue = this.getAttribute('data-filter');
+                
+                // Filter rooms
+                filterRooms(filterValue);
+            });
+        });
+
+        function filterRooms(filterValue) {
+            if (filterValue === 'all') {
+                filteredRooms = [...roomsData];
+            } else {
+                filteredRooms = roomsData.filter(room => room.type === filterValue);
+            }
+            
+            // Reset to first slide
+            currentSlide = 0;
+            
+            // Update total slides
+            totalSlides = Math.ceil(filteredRooms.length / cardsPerSlide);
+            
+            // Render rooms and indicators
+            renderRooms();
+            renderIndicators();
+            updateCarouselButtons();
+        }
+
+        // Room selection
+        let selectedRoom = null;
+
+        function selectRoom(roomType, price) {
+            if (!searchData.checkIn || !searchData.checkOut) {
+                alert('Please go back and select your check-in and check-out dates');
+                return;
+            }
+
+            const checkInDate = new Date(searchData.checkIn);
+            const checkOutDate = new Date(searchData.checkOut);
+            const nights = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+            const totalPrice = price * nights;
+
+            selectedRoom = {
+                type: roomType,
+                pricePerNight: price,
+                totalPrice: totalPrice,
+                nights: nights
+            };
+
+            // Update modal content
+            document.getElementById('summaryRoomType').textContent = formatRoomType(roomType);
+            document.getElementById('summaryCheckIn').textContent = formatDate(searchData.checkIn);
+            document.getElementById('summaryCheckOut').textContent = formatDate(searchData.checkOut);
+            document.getElementById('summaryNights').textContent = nights;
+            document.getElementById('summaryPricePerNight').textContent = `₹${price.toLocaleString()}`;
+            document.getElementById('summaryTotal').textContent = `₹${totalPrice.toLocaleString()}`;
+
+            // Show modal
+            document.getElementById('bookingModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').classList.remove('show');
+        }
+
+        function confirmBooking() {
+            if (!selectedRoom) {
+                alert('No room selected');
+                return;
+            }
+
+            // Create booking data
+            const bookingData = {
+                destination: searchData.destination,
+                checkIn: searchData.checkIn,
+                checkOut: searchData.checkOut,
+                travelers: searchData.travelers,
+                roomType: selectedRoom.type,
+                pricePerNight: selectedRoom.pricePerNight,
+                totalPrice: selectedRoom.totalPrice,
+                nights: selectedRoom.nights,
+                bookingId: 'BK' + Date.now(),
+                timestamp: new Date().toISOString()
+            };
+
+            // Save booking data (in real app, send to server)
+            console.log('Booking confirmed:', bookingData);
+            
+            // Save to localStorage for demo
+            const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            bookings.unshift(bookingData);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+
+            alert(`Booking confirmed! Your booking ID is: ${bookingData.bookingId}`);
+            
+            // Redirect to confirmation page or home
+            window.location.href = 'index.html';
+        }
+
+        // Utility functions
+        function formatDate(dateString) {
+            if (!dateString) return '-';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                weekday: 'short', 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        }
+
+        function formatRoomType(roomType) {
+            const roomTypes = {
+                'single': 'Single Room',
+                'double': 'Double Room',
+                'deluxe-double': 'Deluxe Double Room',
+                'large': 'Large Suite',
+                'family-suite': 'Family Suite',
+                'villa': 'Private Villa'
+            };
+            return roomTypes[roomType] || roomType;
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // View room details function
+        function viewRoomDetails(roomType) {
+            // Pass current search data and room type to details page
+            const detailsParams = new URLSearchParams({
+                ...searchData,
+                roomType: roomType
+            });
+            
+            window.location.href = `P5.html?${detailsParams.toString()}`;
+        }
+
+        // Add event listeners for carousel navigation
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            displaySearchSummary();
+            initCarousel();
+        });
+        function goToHotelsPage() {
+    // Navigate to hotels page with current search parameters
+    const params = new URLSearchParams({
+        destination: searchData.destination,
+        checkIn: searchData.checkIn,
+        checkOut: searchData.checkOut,
+        travelers: searchData.travelers,
+        nights: searchData.nights
+    });
+    
+    window.location.href = `P5.html?${params.toString()}`;
+}
+        
+    </script>
+</body>
+</html>

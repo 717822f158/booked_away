@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Booking Site</title>
+    <link rel="stylesheet" href="styles.css">
+  
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo-container">
+                <div class="logo">
+                    
+                    <span class="logo-text">BookedAway</span>
+                </div>
+                <nav class="main-nav">
+                    <a href="#" class="nav-link">Shop travel</a>
+                </nav>
+            </div>
+            <div class="header-actions">
+            
+                <button class="btn-link">INR</button>
+                <button class="btn-link">List your property</button>
+               
+                <button class="btn-link" onclick="window.location.href='P8.html'">Trips</button>
+           
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content container">
+            <h1 class="hero-title">The Travel Edit: Deals & inspiration</h1>
+            <div class="promo-box">
+                <h2 class="promo-title">Book a city package and save</h2>
+                <p class="promo-text">Bundle your flight + hotel and you can save on your next big adventure.</p>
+                <button class="btn btn-primary"  onclick="window.location.href='P8.html'">Explore package deals</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section container">
+        <div class="search-card">
+            <!-- Tabs -->
+            <div class="search-tabs">
+                <button class="tab-btn active" data-tab="stays">
+                    <i class="tab-icon">🏠</i>
+                    <span>Stays</span>
+                </button>
+              
+               
+
+            <!-- Search Form -->
+            <form id="searchForm" class="search-form">
+                <div class="form-group">
+                    <i class="input-icon">📍</i>
+                    <input type="text" id="destination" name="destination" placeholder="Where to?" required autocomplete="off">
+                    <div id="suggestions" class="suggestions-container"></div>
+                </div>
+                <div class="form-group">
+                    <i class="input-icon">📅</i>
+                    <input type="date" id="checkIn" name="checkIn" placeholder="Check-in" required>
+                </div>
+                <div class="form-group">
+                    <i class="input-icon">📅</i>
+                    <input type="date" id="checkOut" name="checkOut" placeholder="Check-out" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group travelers-group">
+                        <i class="input-icon">👥</i>
+                        <input type="text" id="travelers" name="travelers" value="2 adults · 0 children · 1 room" readonly>
+                        <!-- Travelers Dropdown -->
+                        <div id="travelersDropdown" class="travelers-dropdown">
+                            <div class="traveler-option">
+                                <span class="traveler-label">Adults</span>
+                                <div class="counter">
+                                    <button type="button" class="counter-btn decrease" data-type="adults">−</button>
+                                    <span class="counter-value" id="adultsCount">2</span>
+                                    <button type="button" class="counter-btn increase" data-type="adults">+</button>
+                                </div>
+                            </div>
+                            <div class="traveler-option">
+                                <span class="traveler-label">Children</span>
+                                <div class="counter">
+                                    <button type="button" class="counter-btn decrease" data-type="children">−</button>
+                                    <span class="counter-value" id="childrenCount">0</span>
+                                    <button type="button" class="counter-btn increase" data-type="children">+</button>
+                                </div>
+                            </div>
+                            <div class="traveler-option">
+                                <span class="traveler-label">Rooms</span>
+                                <div class="counter">
+                                    <button type="button" class="counter-btn decrease" data-type="rooms">−</button>
+                                    <span class="counter-value" id="roomsCount">1</span>
+                                    <button type="button" class="counter-btn increase" data-type="rooms">+</button>
+                                </div>
+                            </div>
+                            <div class="traveler-option pets-option">
+                                <span class="traveler-label">Travelling with pets?</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="petsToggle">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <p class="pets-note">Assistance animals aren't considered pets.</p>
+                            <a href="#" class="pets-link">Learn more about travelling with assistance animals</a>
+                            <button type="button" class="btn btn-primary btn-done">Done</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-search">
+                        <i class="search-icon">🔍</i>
+                    </button>
+                </div>
+                <input type="hidden" id="searchType" name="searchType" value="stays">
+            </form>
+        </div>
+    </section>
+
+    <!-- Content Area -->
+    <section class="content container">
+        <div class="content-message">
+            <h2 class="content-title">Start planning your next adventure</h2>
+            <p class="content-text">Fill in all search fields to find your perfect destination.</p>
+            <div id="message" class="message"></div>
+        </div>
+    </section>
+
+    <!-- Error Popup Modal -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <div class="modal-header">
+                <h2>⚠️ Invalid Input</h2>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage">Please fill in all required fields.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="errorOkBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

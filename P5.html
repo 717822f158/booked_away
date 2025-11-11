@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expedia - Find Your Perfect Stay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            line-height: 1.4;
+        }
+
+        .header {
+            background: white;
+            color: #333;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            background-color: #ffcc00;
+            color: #1976d2;
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            color: #1976d2;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-left: 24px;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .shop-travel {
+            margin-left: 24px;
+            font-size: 14px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            height: fit-content;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .filter-section {
+            margin-bottom: 24px;
+        }
+
+        .filter-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .filter-item input[type="checkbox"],
+        .filter-item input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        .price-range {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .price-input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .date-picker {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .date-input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .guest-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .guest-input {
+            width: 60px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .results-header {
+            background: white;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .results-count {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .sort-options {
+            display: flex;
+            align-items: center;
+        }
+
+        .sort-label {
+            margin-right: 8px;
+            font-size: 14px;
+        }
+
+        .sort-select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .hotel-card {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            transition: transform 0.2s;
+            position: relative;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .hotel-image {
+            width: 200px;
+            height: 160px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .hotel-info {
+            flex: 1;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hotel-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0071c2;
+            margin-bottom: 4px;
+            text-decoration: none;
+        }
+
+        .hotel-name:hover {
+            text-decoration: underline;
+        }
+
+        .hotel-location {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .hotel-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .stars {
+            color: #ffa500;
+            font-size: 14px;
+        }
+
+        .rating-score {
+            background: #003580;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .hotel-amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .amenity {
+            background: #e7f3ff;
+            color: #0071c2;
+            padding: 3px 6px;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+
+        .hotel-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            flex: 1;
+        }
+
+        .hotel-pricing {
+            width: 200px;
+            padding: 16px;
+            border-left: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .price-note {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .book-btn {
+            background: #0071c2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .book-btn:hover {
+            background: #005999;
+        }
+
+        .badge {
+            background: #d32f2f;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .map-view {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .map-container {
+            height: 200px;
+            background-color: #e9eef2;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .map-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .map-button {
+            display: block;
+            text-align: center;
+            color: #1976d2;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 8px 0;
+        }
+
+        .compare-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-top: 1px solid #eee;
+        }
+
+        .compare-text {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: #1976d2;
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(20px);
+        }
+
+        .perfect-stay {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .perfect-stay h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .perfect-stay p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 24px;
+            padding: 4px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-button {
+            background: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .see-more {
+            color: #1976d2;
+            font-size: 14px;
+            text-decoration: none;
+            display: block;
+            margin-top: 8px;
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+
+        .favorite-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .favorite-btn.active {
+            color: #ff4757;
+        }
+
+        .distance-info {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .currency-converter {
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background: #f8f9fa;
+        }
+
+        .reviews-summary {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 0 10px;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .hotel-card {
+                flex-direction: column;
+            }
+            
+            .hotel-image {
+                width: 100%;
+                height: 200px;
+            }
+            
+            .hotel-pricing {
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid #eee;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+         
+            <div class="logo-text">Bookedaway</div>
+            <div class="shop-travel">Shop travel</div>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="nav-item">Get the app</a>
+            <a href="#" class="nav-item">INR</a>
+            <a href="#" class="nav-item">List your property</a>
+            <a href="#" class="nav-item">Support</a>
+            <a href="#" class="nav-item">Trips</a>
+            <a href="#" class="nav-item">Sign in</a>
+        </div>
+        <div class="mobile-menu">☰</div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="filter-section">
+                <div class="filter-title">Filter by:</div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-title">Travel dates</div>
+                <div class="date-picker">
+                    <input type="date" class="date-input" id="check-in">
+                    <input type="date" class="date-input" id="check-out">
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-title">Guests & rooms</div>
+                <div class="guest-selector">
+                    <label>Adults:</label>
+                    <input type="number" class="guest-input" id="adults" value="2" min="1" max="10">
+                </div>
+                <div class="guest-selector">
+                    <label>Children:</label>
+                    <input type="number" class="guest-input" id="children" value="0" min="0" max="10">
+                </div>
+                <div class="guest-selector">
+                    <label>Rooms:</label>
+                    <input type="number" class="guest-input" id="rooms" value="1" min="1" max="5">
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-title">Your budget (per night)</div>
+                <div class="price-range">
+                    <input type="number" class="price-input" placeholder="$0" id="min-price" min="0" step="10">
+                    <span style="align-self: center;">to</span>
+                    <input type="number" class="price-input" placeholder="$1000+" id="max-price" min="0" step="10">
+                </div>
+                <div class="currency-converter">
+                    <select id="currency">
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="GBP">GBP (£)</option>
+                        <option value="INR">INR (₹)</option>
+                        <option value="JPY">JPY (¥)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-title">Guest rating</div>
+                <div class="filter-item">
+                    <input type="radio" id="any" name="rating" checked>
+                    <label for="any">Any</label>
+                </div>
+                <div class="filter-item">
+                    <input type="radio" id="wonderful" name="rating">
+                    <label for="wonderful">Wonderful 9+</label>
+                </div>
+                <div class="filter-item">
+                    <input type="radio" id="verygood" name="rating">
+                    <label for="verygood">Very good 8+</label>
+                </div>
+                <div class="filter-item">
+                    <input type="radio" id="good" name="rating">
+                    <label for="good">Good 7+</label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-title">Amenities</div>
+                <div class="filter-item">
+                    <input type="checkbox" id="breakfast">
+                    <label for="breakfast">Breakfast included</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="freewifi">
+                    <label for="freewifi">Free WiFi</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="pool">
+                    <label for="pool">Swimming pool</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="parking">
+                    <label for="parking">Free parking</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="gym">
+                    <label for="gym">Fitness center</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="spa">
+                    <label for="spa">Spa services</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="petfriendly">
+                    <label for="petfriendly">Pet friendly</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="aircon">
+                    <label for="aircon">Air conditioning</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="roomservice">
+                    <label for="roomservice">Room service</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="concierge">
+                    <label for="concierge">Concierge</label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-title">Meal plans available</div>
+                <div class="filter-item">
+                    <input type="checkbox" id="dinner">
+                    <label for="dinner">Dinner included</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="allinclusive">
+                    <label for="allinclusive">All inclusive</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="lunch">
+                    <label for="lunch">Lunch included</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="halfboard">
+                    <label for="halfboard">Half board</label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-title">Traveler experience</div>
+                <div class="filter-item">
+                    <input type="checkbox" id="business">
+                    <label for="business">Business friendly</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="family">
+                    <label for="family">Family friendly</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="adults">
+                    <label for="adults">Adults only</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="lgbtq">
+                    <label for="lgbtq">LGBTQ welcoming</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="romantic">
+                    <label for="romantic">Romantic</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="accessible">
+                    <label for="accessible">Wheelchair accessible</label>
+                </div>
+                <a href="#" class="see-more">See more</a>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-title">Property type</div>
+                <div class="filter-item">
+                    <input type="checkbox" id="hotel">
+                    <label for="hotel">Hotels</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="apartment">
+                    <label for="apartment">Apartments</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="resort">
+                    <label for="resort">Resorts</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="villa">
+                    <label for="villa">Villas</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="hostel">
+                    <label for="hostel">Hostels</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="bnb">
+                    <label for="bnb">Bed & Breakfast</label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-title">Star rating</div>
+                <div class="filter-item">
+                    <input type="checkbox" id="5star">
+                    <label for="5star">⭐⭐⭐⭐⭐</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="4star">
+                    <label for="4star">⭐⭐⭐⭐</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="3star">
+                    <label for="3star">⭐⭐⭐</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="2star">
+                    <label for="2star">⭐⭐</label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-title">Distance from center</div>
+                <div class="filter-item">
+                    <input type="checkbox" id="distance1">
+                    <label for="distance1">Less than 1 km</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="distance3">
+                    <label for="distance3">Less than 3 km</label>
+                </div>
+                <div class="filter-item">
+                    <input type="checkbox" id="distance5">
+                    <label for="distance5">Less than 5 km</label>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="map-view">
+                <div class="map-container" onclick="openMap()">
+                    <svg width="100%" height="200" viewBox="0 0 800 200" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <!-- World Map SVG -->
+                        <defs>
+                            <linearGradient id="worldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Continents simplified -->
+                        <!-- North America -->
+                        <path d="M50 60 L150 50 L180 80 L160 120 L80 110 Z" fill="#2ecc71" opacity="0.8"/>
+                        <!-- South America -->
+                        <path d="M120 120 L160 130 L150 180 L110 170 Z" fill="#27ae60" opacity="0.8"/>
+                        <!-- Europe -->
+                        <path d="M300 40 L380 45 L370 80 L290 75 Z" fill="#e74c3c" opacity="0.8"/>
+                        <!-- Africa -->
+                        <path d="M280 80 L350 85 L340 150 L270 145 Z" fill="#f39c12" opacity="0.8"/>
+                        <!-- Asia -->
+                        <path d="M380 30 L600 40 L590 120 L370 110 Z" fill="#9b59b6" opacity="0.8"/>
+                        <!-- Australia -->
+                        <path d="M550 140 L620 145 L610 170 L540 165 Z" fill="#1abc9c" opacity="0.8"/>
+                        
+                        <!-- Hotel markers on different continents -->
+                        <g>
+                            <!-- New York -->
+                            <circle cx="120" cy="70" r="6" fill="#ff4757"/>
+                            <circle cx="120" cy="70" r="3" fill="#ffffff"/>
+                            
+                            <!-- London -->
+                            <circle cx="320" cy="55" r="6" fill="#ff4757"/>
+                            <circle cx="320" cy="55" r="3" fill="#ffffff"/>
+                            
+                            <!-- Tokyo -->
+                            <circle cx="580" cy="65" r="6" fill="#ff4757"/>
+                            <circle cx="580" cy="65" r="3" fill="#ffffff"/>
+                            
+                            <!-- Sydney -->
+                            <circle cx="580" cy="155" r="6" fill="#ff4757"/>
+                            <circle cx="580" cy="155" r="3" fill="#ffffff"/>
+                            
+                            <!-- Dubai -->
+                            <circle cx="420" cy="85" r="6" fill="#ff4757"/>
+                            <circle cx="420" cy="85" r="3" fill="#ffffff"/>
+
+                            <!-- Chennai -->
+                            <circle cx="480" cy="110" r="6" fill="#ff4757"/>
+                            <circle cx="480" cy="110" r="3" fill="#ffffff"/>
+                        </g>
+                        
+                        <!-- Location labels -->
+                        <g fill="#ffffff" font-family="Arial, sans-serif" font-size="10" font-weight="bold">
+                            <text x="120" y="85" text-anchor="middle">New York</text>
+                            <text x="320" y="45" text-anchor="middle">London</text>
+                            <text x="580" y="55" text-anchor="middle">Tokyo</text>
+                            <text x="580" y="170" text-anchor="middle">Sydney</text>
+                            <text x="420" y="75" text-anchor="middle">Dubai</text>
+                            <text x="480" y="125" text-anchor="middle">Chennai</text>
+                        </g>
+                        
+                        <!-- Title -->
+                        <text x="400" y="20" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Global Hotel Locations</text>
+                    </svg>
+                </div>
+                <a href="#" class="map-button" onclick="openMap()">View in a map</a>
+                <div class="compare-container">
+                    <div class="compare-text">Compare properties<br>Get a side-by-side view of up to 5 properties.</div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="compare-toggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="perfect-stay">
+                <h3>Find your perfect stay</h3>
+                <p>Let us know what you're looking for to find your perfect stay.</p>
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="I'm looking for..." value="Hotels with breakfast">
+                    <button class="search-button">→</button>
+                </div>
+            </div>
+
+            <div class="results-header">
+                <div class="results-count" id="results-count">Chennai: 1,234 properties found</div>
+                <div class="sort-options">
+                    <span class="sort-label">Sort by:</span>
+                    <select class="sort-select" id="sort-select">
+                        <option value="recommended">Recommended</option>
+                        <option value="price-low">Price (low to high)</option>
+                        <option value="price-high">Price (high to low)</option>
+                        <option value="rating">Guest rating</option>
+                        <option value="distance">Distance from downtown</option>
+                        <option value="newest">Newest first</option>
+                        <option value="popularity">Most popular</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="hotel-card">
+                <button class="favorite-btn" onclick="toggleFavorite(this)">♡</button>
+                <img src="images/img56.jpg" alt="The Leela Palace Chennai" class="hotel-image">
+                <div class="hotel-info">
+                    <a href="#" class="hotel-name">The Leela Palace Chennai</a>
+                    <div class="hotel-location">Adyar, Chennai</div>
+                    <div class="distance-info">📍 5.2 km from city center</div>
+                    <div class="hotel-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-score">9.3</span>
+                        <span>Wonderful</span>
+                    </div>
+                    <div class="reviews-summary">Based on 1,952 reviews</div>
+                    <div class="hotel-amenities">
+                        <span class="amenity">Free WiFi</span>
+                        <span class="amenity">Swimming pool</span>
+                        <span class="amenity">Spa services</span>
+                        <span class="amenity">Fine dining</span>
+                        <span class="amenity">Airport shuttle</span>
+                        <span class="amenity">Concierge</span>
+                        <span class="amenity">24/7 front desk</span>
+                    </div>
+                    <div class="hotel-description">
+                        Luxury hotel in Adyar offering stunning views of the Bay of Bengal. Features exquisite dining options and world-class amenities.
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="showPhotos()">📷 Photos</button>
+                        <button class="action-btn" onclick="showReviews()">📝 Reviews</button>
+                        <button class="action-btn" onclick="showMap()">🗺️ Map</button>
+                    </div>
+                </div>
+                <div class="hotel-pricing">
+                    <div class="badge">Luxury Stay</div>
+                    <div class="price">$349</div>
+                    <div class="price-note">+$52 taxes and fees</div>
+                    <div class="currency-converter">≈ ₹29,050 INR</div>
+                <button class="book-btn" onclick="window.location.href='P10.html'">See availability</button>
+                </div>
+            </div>
+
+            <div class="hotel-card">
+                <button class="favorite-btn" onclick="toggleFavorite(this)">♡</button>
+                <img src="images/imG57.jpg" alt="ITC Grand Chola" class="hotel-image">
+                <div class="hotel-info">
+                    <a href="#" class="hotel-name">ITC Grand Chola</a>
+                    <div class="hotel-location">Guindy, Chennai</div>
+                    <div class="distance-info">📍 8.5 km from city center</div>
+                    <div class="hotel-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-score">9.0</span>
+                        <span>Wonderful</span>
+                    </div>
+                    <div class="reviews-summary">Based on 2,487 reviews</div>
+                    <div class="hotel-amenities">
+                        <span class="amenity">Free WiFi</span>
+                        <span class="amenity">Swimming pool</span>
+                        <span class="amenity">Spa services</span>
+                        <span class="amenity">Multiple restaurants</span>
+                        <span class="amenity">Fitness center</span>
+                        <span class="amenity">Business center</span>
+                        <span class="amenity">Concierge</span>
+                    </div>
+                    <div class="hotel-description">
+                        A majestic hotel in Guindy inspired by the Chola dynasty. Offers luxurious rooms and a range of dining and recreational facilities.
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="showPhotos()">📷 Photos</button>
+                        <button class="action-btn" onclick="showReviews()">📝 Reviews</button>
+                        <button class="action-btn" onclick="showMap()">🗺️ Map</button>
+                    </div>
+                </div>
+                <div class="hotel-pricing">
+                    <div class="price">$285</div>
+                    <div class="price-note">+$40 taxes and fees</div>
+                    <div class="currency-converter">≈ ₹23,750 INR</div>
+                   <button class="book-btn" onclick="window.location.href='P6.html'">See availability</button>
+                </div>
+            </div>
+
+            <div class="hotel-card">
+                <button class="favorite-btn" onclick="toggleFavorite(this)">♡</button>
+                <img src="images/img58.jpg" alt="Radisson Blu Hotel Chennai" class="hotel-image">
+                <div class="hotel-info">
+                    <a href="#" class="hotel-name">Radisson Blu Hotel Chennai</a>
+                    <div class="hotel-location">Egmore, Chennai</div>
+                    <div class="distance-info">📍 2.1 km from city center</div>
+                    <div class="hotel-rating">
+                        <span class="stars">⭐⭐⭐⭐</span>
+                        <span class="rating-score">8.5</span>
+                        <span>Very Good</span>
+                    </div>
+                    <div class="reviews-summary">Based on 1,765 reviews</div>
+                    <div class="hotel-amenities">
+                        <span class="amenity">Free WiFi</span>
+                        <span class="amenity">Swimming pool</span>
+                        <span class="amenity">Fitness center</span>
+                        <span class="amenity">Multiple dining options</span>
+                        <span class="amenity">Airport shuttle</span>
+                        <span class="amenity">Business center</span>
+                        <span class="amenity">24/7 front desk</span>
+                    </div>
+                    <div class="hotel-description">
+                        Upscale hotel in Egmore offering comfortable rooms and convenient access to the city's attractions.
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="showPhotos()">📷 Photos</button>
+                        <button class="action-btn" onclick="showReviews()">📝 Reviews</button>
+                        <button class="action-btn" onclick="showMap()">🗺️ Map</button>
+                    </div>
+                </div>
+                <div class="hotel-pricing">
+                    <div class="badge">Popular Choice</div>
+                    <div class="price">$199</div>
+                    <div class="price-note">+$30 taxes and fees</div>
+                    <div class="currency-converter">≈ ₹16,580 INR</div>
+                    <button class="book-btn">See availability</button>
+                </div>
+            </div>
+
+            <div class="hotel-card">
+                <button class="favorite-btn" onclick="toggleFavorite(this)">♡</button>
+                <img src="images/img59.jpg" alt="Taj Coromandel" class="hotel-image">
+                <div class="hotel-info">
+                    <a href="#" class="hotel-name">Taj Coromandel</a>
+                    <div class="hotel-location">Nungambakkam, Chennai</div>
+                    <div class="distance-info">📍 3.8 km from city center</div>
+                    <div class="hotel-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-score">8.8</span>
+                        <span>Fabulous</span>
+                    </div>
+                    <div class="reviews-summary">Based on 1,234 reviews</div>
+                    <div class="hotel-amenities">
+                        <span class="amenity">Swimming pool</span>
+                        <span class="amenity">Spa services</span>
+                        <span class="amenity">Fine dining</span>
+                        <span class="amenity">Fitness center</span>
+                        <span class="amenity">Concierge</span>
+                        <span class="amenity">24/7 front desk</span>
+                        <span class="amenity">Airport shuttle</span>
+                    </div>
+                    <div class="hotel-description">
+                        Iconic luxury hotel in Nungambakkam offering a blend of traditional elegance and modern comfort.
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="showPhotos()">📷 Photos</button>
+                        <button class="action-btn" onclick="showReviews()">📝 Reviews</button>
+                        <button class="action-btn" onclick="showMap()">🗺️ Map</button>
+                    </div>
+                </div>
+                <div class="hotel-pricing">
+                    <div class="price">$265</div>
+                    <div class="price-note">+$38 taxes and fees</div>
+                    <div class="currency-converter">≈ ₹22,080 INR</div>
+                    <button class="book-btn">See availability</button>
+                </div>
+            </div>
+
+            <div class="hotel-card">
+                <button class="favorite-btn" onclick="toggleFavorite(this)">♡</button>
+                <img src="images/img60.jpg" alt="Hyatt Regency Chennai" class="hotel-image">
+                <div class="hotel-info">
+                    <a href="#" class="hotel-name">Hyatt Regency Chennai</a>
+                    <div class="hotel-location">Anna Salai, Chennai</div>
+                    <div class="distance-info">📍 4.5 km from city center</div>
+                    <div class="hotel-rating">
+                        <span class="stars">⭐⭐⭐⭐</span>
+                        <span class="rating-score">8.6</span>
+                        <span>Fabulous</span>
+                    </div>
+                    <div class="reviews-summary">Based on 2,012 reviews</div>
+                    <div class="hotel-amenities">
+                        <span class="amenity">Free WiFi</span>
+                        <span class="amenity">Swimming pool</span>
+                        <span class="amenity">Fitness center</span>
+                        <span class="amenity">Multiple dining options</span>
+                        <span class="amenity">Business center</span>
+                        <span class="amenity">Concierge</span>
+                        <span class="amenity">24/7 front desk</span>
+                    </div>
+                    <div class="hotel-description">
+                        Modern hotel on Anna Salai offering stylish rooms and a range of business and leisure facilities.
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="showPhotos()">📷 Photos</button>
+                        <button class="action-btn" onclick="showReviews()">📝 Reviews</button>
+                        <button class="action-btn" onclick="showMap()">🗺️ Map</button>
+                    </div>
+                </div>
+                <div class="hotel-pricing">
+                    <div class="price">$175</div>
+                    <div class="price-note">+$26 taxes and fees</div>
+                    <div class="currency-converter">≈ ₹14,580 INR</div>
+                    <button class="book-btn">See availability</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Initialize dates
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            document.getElementById('check-in').value = today.toISOString().split('T')[0];
+            document.getElementById('check-out').value = tomorrow.toISOString().split('T')[0];
+
+            let currentDestination = 'Chennai';
+            
+            // Add event listeners
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const radioButtons = document.querySelectorAll('input[type="radio"]');
+            const priceInputs = document.querySelectorAll('.price-input');
+            const guestInputs = document.querySelectorAll('.guest-input');
+            const sortSelect = document.getElementById('sort-select');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', filterHotels);
+            });
+            
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', filterHotels);
+            });
+            
+            priceInputs.forEach(input => {
+                input.addEventListener('input', filterHotels);
+            });
+            
+            guestInputs.forEach(input => {
+                input.addEventListener('input', updateGuestInfo);
+            });
+            
+            sortSelect.addEventListener('change', sortHotels);
+            
+            // Currency converter
+            document.getElementById('currency').addEventListener('change', updateCurrency);
+            
+            // Initial sort
+            sortHotels();
+        });
+
+        function filterHotels() {
+            const checkedFilters = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                .map(cb => cb.id);
+            
+            const selectedRating = document.querySelector('input[name="rating"]:checked').id;
+            
+            const minPrice = parseInt(document.getElementById('min-price').value) || 0;
+            const maxPrice = parseInt(document.getElementById('max-price').value) || 10000;
+            
+            const hotelCards = document.querySelectorAll('.hotel-card');
+            let visibleCount = 0;
+            
+            hotelCards.forEach(card => {
+                let shouldShow = true;
+                
+                // Price filtering
+                const priceElement = card.querySelector('.price');
+                const price = parseInt(priceElement.textContent.replace('$', ''));
+                
+                if (price < minPrice || (maxPrice > 0 && price > maxPrice)) {
+                    shouldShow = false;
+                }
+                
+                // Amenity filtering
+                const amenities = Array.from(card.querySelectorAll('.amenity'))
+                    .map(amenity => amenity.textContent.toLowerCase());
+                
+                if (checkedFilters.includes('breakfast') && !amenities.some(a => a.includes('breakfast'))) {
+                    shouldShow = false;
+                }
+                if (checkedFilters.includes('freewifi') && !amenities.some(a => a.includes('wifi'))) {
+                    shouldShow = false;
+                }
+                if (checkedFilters.includes('pool') && !amenities.some(a => a.includes('pool'))) {
+                    shouldShow = false;
+                }
+                if (checkedFilters.includes('parking') && !amenities.some(a => a.includes('parking'))) {
+                    shouldShow = false;
+                }
+                if (checkedFilters.includes('gym') && !amenities.some(a => a.includes('fitness'))) {
+                    shouldShow = false;
+                }
+                if (checkedFilters.includes('spa') && !amenities.some(a => a.includes('spa'))) {
+                    shouldShow = false;
+                }
+                if (checkedFilters.includes('petfriendly') && !amenities.some(a => a.includes('pet'))) {
+                    shouldShow = false;
+                }
+                if (checkedFilters.includes('aircon') && !amenities.some(a => a.includes('air conditioning'))) {
+                    shouldShow = false;
+                }
+                if (checkedFilters.includes('roomservice') && !amenities.some(a => a.includes('room service'))) {
+                    shouldShow = false;
+                }
+                if (checkedFilters.includes('concierge') && !amenities.some(a => a.includes('concierge'))) {
+                    shouldShow = false;
+                }
+                
+                // Guest rating filtering
+                if (selectedRating !== 'any') {
+                    const ratingScore = parseFloat(card.querySelector('.rating-score').textContent);
+                    
+                    if (selectedRating === 'wonderful' && ratingScore < 9) shouldShow = false;
+                    if (selectedRating === 'verygood' && ratingScore < 8) shouldShow = false;
+                    if (selectedRating === 'good' && ratingScore < 7) shouldShow = false;
+                }
+                
+                // Star rating filtering
+                if (checkedFilters.includes('5star')) {
+                    const stars = card.querySelector('.stars').textContent;
+                    if (stars !== '⭐⭐⭐⭐⭐') shouldShow = false;
+                }
+                if (checkedFilters.includes('4star')) {
+                    const stars = card.querySelector('.stars').textContent;
+                    if (stars !== '⭐⭐⭐⭐') shouldShow = false;
+                }
+                if (checkedFilters.includes('3star')) {
+                    const stars = card.querySelector('.stars').textContent;
+                    if (stars !== '⭐⭐⭐') shouldShow = false;
+                }
+                
+                if (shouldShow) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            document.querySelector('.results-count').textContent = 
+                `${currentDestination}: ${visibleCount} properties found`;
+        }
+
+        function sortHotels() {
+            const sortBy = document.getElementById('sort-select').value;
+            const hotelContainer = document.querySelector('.main-content');
+            const hotelCards = Array.from(document.querySelectorAll('.hotel-card'));
+            
+            hotelCards.sort((a, b) => {
+                if (sortBy === 'price-low') {
+                    const priceA = parseInt(a.querySelector('.price').textContent.replace('$', ''));
+                    const priceB = parseInt(b.querySelector('.price').textContent.replace('$', ''));
+                    return priceA - priceB;
+                } else if (sortBy === 'price-high') {
+                    const priceA = parseInt(a.querySelector('.price').textContent.replace('$', ''));
+                    const priceB = parseInt(b.querySelector('.price').textContent.replace('$', ''));
+                    return priceB - priceA;
+                } else if (sortBy === 'rating') {
+                    const ratingA = parseFloat(a.querySelector('.rating-score').textContent);
+                    const ratingB = parseFloat(b.querySelector('.rating-score').textContent);
+                    return ratingB - ratingA;
+                } else if (sortBy === 'distance') {
+                    const distanceA = parseFloat(a.querySelector('.distance-info').textContent.match(/[\d.]+/)[0]);
+                    const distanceB = parseFloat(b.querySelector('.distance-info').textContent.match(/[\d.]+/)[0]);
+                    return distanceA - distanceB;
+                }
+                return 0;
+            });
+            
+            hotelCards.forEach(card => card.remove());
+            hotelCards.forEach(card => {
+                hotelContainer.appendChild(card);
+            });
+        }
+
+        function updateGuestInfo() {
+            const adults = document.getElementById('adults').value;
+            const children = document.getElementById('children').value;
+            const rooms = document.getElementById('rooms').value;
+            
+            console.log(`Updated: ${adults} adults, ${children} children, ${rooms} rooms`);
+        }
+
+        function updateCurrency() {
+            const currency = document.getElementById('currency').value;
+            const rates = {
+                'USD': 1,
+                'EUR': 0.85,
+                'GBP': 0.73,
+                'INR': 83.25,
+                'JPY': 110
+            };
+            
+            const symbols = {
+                'USD': '$',
+                'EUR': '€',
+                'GBP': '£',
+                'INR': '₹',
+                'JPY': '¥'
+            };
+            
+            document.querySelectorAll('.currency-converter').forEach(converter => {
+                const priceText = converter.closest('.hotel-pricing').querySelector('.price').textContent;
+                const price = parseInt(priceText.replace('$', ''));
+                const convertedPrice = Math.round(price * rates[currency]);
+                converter.textContent = `≈ ${symbols[currency]}${convertedPrice.toLocaleString()} ${currency}`;
+            });
+        }
+
+        function openMap() {
+            window.open('https://www.openstreetmap.org/#map=12/40.7589/-73.9851', '_blank');
+        }
+
+        function toggleFavorite(btn) {
+            btn.classList.toggle('active');
+            btn.textContent = btn.classList.contains('active') ? '♥' : '♡';
+        }
+
+        function showPhotos() {
+            alert('Photo gallery would open here');
+        }
+
+        function showReviews() {
+            alert('Reviews section would open here');
+        }
+
+        function showMap() {
+            alert('Individual hotel map would open here');
+        }
+
+        // Search functionality
+        document.querySelector('.search-button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-input').value.toLowerCase();
+            
+            const hotelCards = document.querySelectorAll('.hotel-card');
+            let visibleCount = 0;
+            
+            hotelCards.forEach(card => {
+                const hotelName = card.querySelector('.hotel-name').textContent.toLowerCase();
+                const hotelDesc = card.querySelector('.hotel-description').textContent.toLowerCase();
+                const amenities = Array.from(card.querySelectorAll('.amenity'))
+                    .map(a => a.textContent.toLowerCase()).join(' ');
+                
+                if (hotelName.includes(searchTerm) || 
+                    hotelDesc.includes(searchTerm) || 
+                    amenities.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            document.querySelector('.results-count').textContent = 
+                `${currentDestination}: ${visibleCount} properties found`;
+        });
+
+        // Comparison functionality
+        document.getElementById('compare-toggle').addEventListener('change', function() {
+            if (this.checked) {
+                alert('Comparison mode activated. Click on hotels to add them to comparison (max 5).');
+                document.body.classList.add('comparison-mode');
+            } else {
+                alert('Comparison mode deactivated.');
+                document.body.classList.remove('comparison-mode');
+            }
+        });
+    </script>
+</body>
+</html>

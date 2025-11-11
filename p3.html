@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bookedaway - Login</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('images/img20.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    background: rgba(255, 255, 255, 0.95);
+    width: 280px;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .btn {
+    width: 100%;
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .btn:hover {
+    background: #0056b3;
+  }
+  .forgot, .link {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  .forgot a, .link a {
+    color: #007BFF;
+    text-decoration: none;
+  }
+  .forgot a:hover, .link a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Bookedaway - Login</h2>
+
+  <input type="text" id="username" placeholder="Username" />
+  <input type="password" id="password" placeholder="Password" />
+  <button class="btn" onclick="login()">Login</button>
+
+  <div class="forgot">
+    <a href="#" onclick="forgotPassword()">Forgot Password?</a>
+  </div>
+
+  <div class="link">
+    <a href="register.html">Don't have an account? Register</a>
+  </div>
+</div>
+
+<script>
+  function login() {
+    const usernameInput = document.getElementById("username").value.trim();
+    const passwordInput = document.getElementById("password").value;
+
+    if (!usernameInput || !passwordInput) {
+      alert("Please enter both username and password.");
+      return;
+    }
+
+    const savedUsername = localStorage.getItem("username");
+    const savedPassword = localStorage.getItem("password");
+
+    if (!savedUsername || !savedPassword) {
+      alert("No registered account found. Please register first.");
+      return;
+    }
+
+    if (usernameInput !== savedUsername) {
+      alert("Username not found. Please check your username or register.");
+      return;
+    }
+
+    if (passwordInput !== savedPassword) {
+      alert("Incorrect password!");
+      return;
+    }
+
+    alert("Account logged in successfully!");
+    localStorage.setItem("loggedInUser", usernameInput);
+    window.location.href = "index1.html"; // Redirect after login
+  }
+
+  function forgotPassword() {
+    const usernameInput = document.getElementById("username").value.trim();
+    const savedUsername = localStorage.getItem("username");
+    const savedPassword = localStorage.getItem("password");
+
+    if (!usernameInput) {
+      alert("Please enter your username to recover your password.");
+      return;
+    }
+
+    if (usernameInput !== savedUsername) {
+      alert("Username not found.");
+      return;
+    }
+
+    alert(`Your password is: ${savedPassword}`);
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITC Grand Chola, a Luxury Collection Hotel, Chennai - Expedia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .header {
+            background: white;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            background-color: #ffcc00;
+            color: #1976d2;
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            color: #1976d2;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-left: 24px;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .photo-gallery {
+            display: flex;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .main-photo {
+            flex: 2;
+            overflow: hidden;
+        }
+
+        .main-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .side-photos {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            margin-left: 4px;
+        }
+
+        .side-photo {
+            overflow: hidden;
+        }
+
+        .side-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-nav {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 8px;
+        }
+
+        .gallery-nav button {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 6px 12px;
+            margin-left: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .hotel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .hotel-title {
+            flex: 2;
+        }
+
+        .hotel-title h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .hotel-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .stars {
+            color: #ffa500;
+            margin-right: 8px;
+        }
+
+        .rating-badge {
+            background: #003580;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .rating-text {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .hotel-location {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .explore-area {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-left: 20px;
+        }
+
+        .explore-area h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .map-container {
+            height: 150px;
+            background-color: #e9eef2;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nearby-places {
+            font-size: 13px;
+        }
+
+        .nearby-place {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .place-name {
+            color: #333;
+        }
+
+        .place-distance {
+            color: #666;
+        }
+
+        .see-all-places {
+            color: #1976d2;
+            font-size: 13px;
+            text-decoration: none;
+            display: block;
+            margin-top: 8px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .about-property {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .about-property h2 {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .amenity-item {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .amenity-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            color: #1976d2;
+        }
+
+        .property-description {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .booking-widget {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .booking-widget h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .booking-form {
+            margin-bottom: 16px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 4px;
+            color: #666;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-button {
+            background: #0071c2;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .search-button:hover {
+            background: #005999;
+        }
+
+        .price-guarantee {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .guarantee-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+            background: #ffd700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .guarantee-text {
+            font-size: 13px;
+            color: #333;
+        }
+
+        .room-selection {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        .room-selection h2 {
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        .date-price-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .stay-details {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .price-details {
+            display: flex;
+            align-items: center;
+        }
+
+        .price-label {
+            font-size: 14px;
+            color: #666;
+            margin-right: 8px;
+        }
+
+        .price-slider {
+            width: 100px;
+            margin-right: 8px;
+        }
+
+        .room-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .room-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .room-image {
+            height: 200px;
+            position: relative;
+        }
+
+        .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .room-details {
+            padding: 16px;
+        }
+
+        .room-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .room-amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .room-amenity {
+            font-size: 12px;
+            color: #666;
+            display: flex;
+            align-items: center;
+        }
+
+        .room-amenity-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+        }
+
+        .room-size {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .bed-type {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .cancellation-policy {
+            font-size: 12px;
+            color: #008000;
+            margin-bottom: 12px;
+        }
+
+        .room-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid #eee;
+        }
+
+        .price-amount {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .price-night {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .reserve-button {
+            background: #0071c2;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reserve-button:hover {
+            background: #005999;
+            transform: translateY(-1px);
+        }
+
+        .reserve-button:active {
+            transform: translateY(0);
+        }
+
+        .room-features {
+            margin-top: 12px;
+        }
+
+        .room-feature {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+            color: #1976d2;
+        }
+
+        .room-options {
+            margin-top: 12px;
+        }
+
+        .room-option {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .option-name {
+            color: #333;
+        }
+
+        .option-price {
+            font-weight: 600;
+        }
+
+        .footer {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .photo-gallery {
+                height: 200px;
+            }
+            
+            .side-photos {
+                display: none;
+            }
+            
+            .hotel-header {
+                flex-direction: column;
+            }
+            
+            .explore-area {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+            
+            .room-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-text">BookedAway</div>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="nav-item">INR</a>
+            <a href="#" class="nav-item">Trips</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="photo-gallery">
+            <div class="main-photo">
+                <img src="images/img61.jpg" alt="ITC Grand Chola Pool View">
+            </div>
+            <div class="side-photos">
+                <div class="side-photo">
+                    <img src="images/img62.jpg" alt="ITC Grand Chola Lobby">
+                </div>
+                <div class="side-photo">
+                    <img src="images/img63.jpg" alt="ITC Grand Chola Room">
+                </div>
+                <div class="side-photo">
+                    <img src="images/img64.jpg" alt="ITC Grand Chola Restaurant">
+                </div>
+                <div class="side-photo">
+                    <img src="images/img65.jpg" alt="ITC Grand Chola Exterior">
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery-nav">
+            <button>Photos</button>
+            <button>Rooms</button>
+            <button>Facilities</button>
+            <button>Location</button>
+        </div>
+
+        <div class="hotel-header">
+            <div class="hotel-title">
+                <h1>ITC Grand Chola, a Luxury Collection Hotel, Chennai</h1>
+                <div class="hotel-rating">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div class="rating-badge">9.0</div>
+                    <div class="rating-text">Wonderful</div>
+                </div>
+                <div class="hotel-location">63, Mount Road, Guindy, Chennai, Tamil Nadu, 600032, India</div>
+            </div>
+            
+            <div class="explore-area">
+                <h3>Explore the area</h3>
+                <div class="map-container">
+                    <img src="images/img66.jpg" alt="Map of ITC Grand Chola area" class="map-image">
+                </div>
+                <div class="nearby-places">
+                    <div class="nearby-place">
+                        <span class="place-name">T. Nagar Shopping District</span>
+                        <span class="place-distance">3.5 km</span>
+                    </div>
+                    <div class="nearby-place">
+                        <span class="place-name">Phoenix Market City</span>
+                        <span class="place-distance">4.2 km</span>
+                    </div>
+                    <div class="nearby-place">
+                        <span class="place-name">Marina Beach</span>
+                        <span class="place-distance">8.0 km</span>
+                    </div>
+                    <div class="nearby-place">
+                        <span class="place-name">Chennai Airport</span>
+                        <span class="place-distance">7.5 km</span>
+                    </div>
+                </div>
+                <a href="#" class="see-all-places">See all places nearby →</a>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="about-property">
+                <h2>About this property</h2>
+                <div class="amenities-grid">
+                    <div class="amenity-item">
+                        <span class="amenity-icon">🏊</span>
+                        <span>3 outdoor pools</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span class="amenity-icon">🍽️</span>
+                        <span>10 restaurants and 2 bars</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span class="amenity-icon">🧖</span>
+                        <span>Full-service spa</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span class="amenity-icon">🏋️</span>
+                        <span>24-hour fitness center</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span class="amenity-icon">🅿️</span>
+                        <span>Free valet parking</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span class="amenity-icon">🚗</span>
+                        <span>Airport shuttle available</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span class="amenity-icon">📶</span>
+                        <span>Free WiFi in public areas</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span class="amenity-icon">🛎️</span>
+                        <span>24/7 front desk</span>
+                    </div>
+                </div>
+                
+                <div class="property-description">
+                    <p>Inspired by the architectural splendor of the Chola dynasty, ITC Grand Chola is a magnificent tribute to Southern India's greatest empires. This luxury hotel in Chennai features 600 rooms, suites and serviced apartments, 10 distinctive dining experiences, the award-winning Kaya Kalp spa, and extensive meeting and convention facilities.</p>
+                    <br>
+                    <p>Located in the heart of Chennai, the hotel is just 8 km from Chennai International Airport and close to the city's business districts and cultural attractions. Experience the perfect blend of traditional grandeur and contemporary luxury at ITC Grand Chola.</p>
+                </div>
+            </div>
+            
+            <div class="booking-widget">
+                <h3>Book</h3>
+                <form class="booking-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="check-in">Check-in</label>
+                            <input type="date" id="check-in" class="form-control" value="2025-06-05">
+                        </div>
+                        <div class="form-group">
+                            <label for="check-out">Check-out</label>
+                            <input type="date" id="check-out" class="form-control" value="2025-06-07">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guests">Guests</label>
+                            <select id="guests" class="form-control">
+                                <option>1 adult</option>
+                                <option selected>2 adults</option>
+                                <option>2 adults, 1 child</option>
+                                <option>2 adults, 2 children</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" class="search-button">Search</button>
+                </form>
+                
+                <div class="price-guarantee">
+                    <div class="guarantee-icon">✓</div>
+                    <div class="guarantee-text">
+                        <strong>We Price Match</strong><br>
+                        Found a better price? We'll match it and give you an additional 10% off.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="room-selection">
+            <h2>Choose your room</h2>
+            
+            <div class="date-price-bar">
+                <div class="stay-details">
+                    <strong>2-night stay</strong> · June 5-7, 2025 · 2 adults
+                </div>
+                <div class="price-details">
+                    <span class="price-label">Price:</span>
+                    <input type="range" min="0" max="100" value="50" class="price-slider">
+                    <span>₹20,000+</span>
+                </div>
+            </div>
+            
+            <div class="room-cards">
+                <div class="room-card" data-room-id="executive">
+                    <div class="room-image">
+                        <img src="images/img67.jpg" alt="Executive Room">
+                    </div>
+                    <div class="room-details">
+                        <div class="room-name">Executive Room</div>
+                        <div class="room-size">40 m² • City view</div>
+                        <div class="bed-type">1 King Bed</div>
+                        <div class="room-amenities">
+                            <div class="room-amenity">
+                                <span class="room-amenity-icon">📶</span>
+                                <span>Free WiFi</span>
+                            </div>
+                            <div class="room-amenity">
+                                <span class="room-amenity-icon">🍽️</span>
+                                <span>Breakfast included</span>
+                            </div>
+                            <div class="room-amenity">
+                                <span class="room-amenity-icon">❄️</span>
+                                <span>Air conditioning</span>
+                            </div>
+                        </div>
+                        <div class="cancellation-policy">Free cancellation until June 3</div>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Desk</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Minibar</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Coffee/tea maker</span>
+                            </div>
+                        </div>
+                        <div class="room-options">
+                            <div class="room-option">
+                                <span class="option-name">Room only</span>
+                                <span class="option-price">₹18,500</span>
+                            </div>
+                            <div class="room-option">
+                                <span class="option-name">Room with breakfast</span>
+                                <span class="option-price">₹20,000</span>
+                            </div>
+                        </div>
+                        <div class="room-price">
+                            <div>
+                                <div class="price-amount">₹20,000</div>
+                                <div class="price-night">for 2 nights</div>
+                            </div>
+                            <button class="reserve-button">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-card" data-room-id="tower">
+                    <div class="room-image">
+                        <img src="images/img68.jpg" alt="Tower Room">
+                    </div>
+                    <div class="room-details">
+                        <div class="room-name">Tower Room</div>
+                        <div class="room-size">45 m² • City view</div>
+                        <div class="bed-type">1 King Bed or 2 Twin Beds</div>
+                        <div class="room-amenities">
+                            <div class="room-amenity">
+                                <span class="room-amenity-icon">📶</span>
+                                <span>Free WiFi</span>
+                            </div>
+                            <div class="room-amenity">
+                                <span class="room-amenity-icon">🍽️</span>
+                                <span>Breakfast included</span>
+                            </div>
+                            <div class="room-amenity">
+                                <span class="room-amenity-icon">❄️</span>
+                                <span>Air conditioning</span>
+                            </div>
+                        </div>
+                        <div class="cancellation-policy">Free cancellation until June 3</div>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Desk</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Minibar</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Coffee/tea maker</span>
+                            </div>
+                        </div>
+                        <div class="room-options">
+                            <div class="room-option">
+                                <span class="option-name">Room only</span>
+                                <span class="option-price">₹22,000</span>
+                            </div>
+                            <div class="room-option">
+                                <span class="option-name">Room with breakfast</span>
+                                <span class="option-price">₹24,000</span>
+                            </div>
+                        </div>
+                        <div class="room-price">
+                            <div>
+                                <div class="price-amount">₹24,000</div>
+                                <div class="price-night">for 2 nights</div>
+                            </div>
+                            <button class="reserve-button">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-card" data-room-id="suite">
+                    <div class="room-image">
+                        <img src="images/img69.jpg" alt="Executive Suite">
+                    </div>
+                    <div class="room-details">
+                        <div class="room-name">Executive Suite</div>
+                        <div class="room-size">65 m² • City view</div>
+                        <div class="bed-type">1 King Bed</div>
+                        <div class="room-amenities">
+                            <div class="room-amenity">
+                                <span class="room-amenity-icon">📶</span>
+                                <span>Free WiFi</span>
+                            </div>
+                            <div class="room-amenity">
+                                <span class="room-amenity-icon">🍽️</span>
+                                <span>Breakfast included</span>
+                            </div>
+                            <div class="room-amenity">
+                                <span class="room-amenity-icon">❄️</span>
+                                <span>Air conditioning</span>
+                            </div>
+                            <div class="room-amenity">
+                                <span class="room-amenity-icon">🛋️</span>
+                                <span>Separate living area</span>
+                            </div>
+                        </div>
+                        <div class="cancellation-policy">Free cancellation until June 3</div>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Desk</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Minibar</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Coffee/tea maker</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Bathtub and shower</span>
+                            </div>
+                        </div>
+                        <div class="room-options">
+                            <div class="room-option">
+                                <span class="option-name">Room only</span>
+                                <span class="option-price">₹28,000</span>
+                            </div>
+                            <div class="room-option">
+                                <span class="option-name">Room with breakfast</span>
+                                <span class="option-price">₹30,000</span>
+                            </div>
+                        </div>
+                        <div class="room-price">
+                            <div>
+                                <div class="price-amount">₹30,000</div>
+                                <div class="price-night">for 2 nights</div>
+                            </div>
+                            <button class="reserve-button">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>© 2025 BookedAway, Inc. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to navigate to next page with room data
+        function navigateToNextPage(roomData) {
+            try {
+                // Store booking data in sessionStorage
+                sessionStorage.setItem('bookingData', JSON.stringify(roomData));
+                
+                // Navigate to next page
+                window.location.href = 'P7.html';
+            } catch (error) {
+                console.error('Navigation error:', error);
+                alert('Unable to proceed with booking. Please try again.');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current date + 1 day as default check-in
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const dayAfterTomorrow = new Date(today);
+            dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
+            
+            document.getElementById('check-in').valueAsDate = tomorrow;
+            document.getElementById('check-out').valueAsDate = dayAfterTomorrow;
+            
+            // Gallery navigation
+            const galleryButtons = document.querySelectorAll('.gallery-nav button');
+            galleryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert(`Showing ${button.textContent} view`);
+                });
+            });
+            
+            // Room reservation with data passing
+            const reserveButtons = document.querySelectorAll('.reserve-button');
+            reserveButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const roomCard = this.closest('.room-card');
+                    const roomDetails = roomCard.querySelector('.room-details');
+                    
+                    // Extract room information
+                    const roomData = {
+                        id: roomCard.dataset.roomId,
+                        name: roomDetails.querySelector('.room-name').textContent,
+                        size: roomDetails.querySelector('.room-size').textContent,
+                        bedType: roomDetails.querySelector('.bed-type').textContent,
+                        price: roomDetails.querySelector('.price-amount').textContent,
+                        priceNight: roomDetails.querySelector('.price-night').textContent,
+                        cancellationPolicy: roomDetails.querySelector('.cancellation-policy').textContent,
+                        checkIn: document.getElementById('check-in').value,
+                        checkOut: document.getElementById('check-out').value,
+                        guests: document.getElementById('guests').value,
+                        hotelName: 'ITC Grand Chola, a Luxury Collection Hotel, Chennai',
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    // Get amenities
+                    const amenities = [];
+                    roomDetails.querySelectorAll('.room-amenity span:last-child').forEach(amenity => {
+                        amenities.push(amenity.textContent);
+                    });
+                    roomData.amenities = amenities;
+                    
+                    // Get features
+                    const features = [];
+                    roomDetails.querySelectorAll('.room-feature span:last-child').forEach(feature => {
+                        features.push(feature.textContent);
+                    });
+                    roomData.features = features;
+                    
+                    // Get room options
+                    const options = [];
+                    roomDetails.querySelectorAll('.room-option').forEach(option => {
+                        options.push({
+                            name: option.querySelector('.option-name').textContent,
+                            price: option.querySelector('.option-price').textContent
+                        });
+                    });
+                    roomData.options = options;
+                    
+                    // Navigate to next page with data
+                    navigateToNextPage(roomData);
+                });
+            });
+            
+            // Date change handlers
+            const checkInDate = document.getElementById('check-in');
+            const checkOutDate = document.getElementById('check-out');
+            
+            checkInDate.addEventListener('change', function() {
+                // Ensure check-out is after check-in
+                const checkIn = new Date(this.value);
+                const checkOut = new Date(checkOutDate.value);
+                
+                if (checkOut <= checkIn) {
+                    const newCheckOut = new Date(checkIn);
+                    newCheckOut.setDate(newCheckOut.getDate() + 1);
+                    checkOutDate.valueAsDate = newCheckOut;
+                }
+                
+                updateStayDetails();
+            });
+            
+            checkOutDate.addEventListener('change', function() {
+                // Ensure check-out is after check-in
+                const checkIn = new Date(checkInDate.value);
+                const checkOut = new Date(this.value);
+                
+                if (checkOut <= checkIn) {
+                    const newCheckIn = new Date(checkOut);
+                    newCheckIn.setDate(newCheckIn.getDate() - 1);
+                    checkInDate.valueAsDate = newCheckIn;
+                }
+                
+                updateStayDetails();
+            });
+            
+            function updateStayDetails() {
+                const checkIn = new Date(checkInDate.value);
+                const checkOut = new Date(checkOutDate.value);
+                
+                // Calculate number of nights
+                const nights = Math.round((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+                
+                // Format dates
+                const options = { month: 'short', day: 'numeric' };
+                const checkInFormatted = checkIn.toLocaleDateString('en-US', options);
+                const checkOutFormatted = checkOut.toLocaleDateString('en-US', options);
+                
+                // Update stay details text
+                document.querySelector('.stay-details').innerHTML = 
+                    `<strong>${nights}-night stay</strong> · ${checkInFormatted}-${checkOutFormatted}, 2025 · 2 adults`;
+                
+                // Update room prices based on number of nights
+                const basePrices = [10000, 12000, 15000]; // Base price per night for each room type
+                const roomPrices = document.querySelectorAll('.price-amount');
+                
+                roomPrices.forEach((price, index) => {
+                    const totalPrice = basePrices[index] * nights;
+                    price.textContent = `₹${totalPrice.toLocaleString()}`;
+                });
+            }
+            
+            // Search button
+            document.querySelector('.search-button').addEventListener('click', function() {
+                updateStayDetails();
+                alert('Searching for available rooms with your criteria');
+            });
+            
+            // Price slider
+            const priceSlider = document.querySelector('.price-slider');
+            priceSlider.addEventListener('input', function() {
+                const minPrice = 15000;
+                const maxPrice = 40000;
+                const value = minPrice + (maxPrice - minPrice) * (this.value / 100);
+                
+                document.querySelector('.price-details span:last-child').textContent = 
+                    `₹${Math.round(value).toLocaleString()}+`;
+                
+                // Filter rooms based on price
+                const roomCards = document.querySelectorAll('.room-card');
+                roomCards.forEach(card => {
+                    const roomPrice = parseInt(card.querySelector('.price-amount').textContent.replace(/[₹,]/g, ''));
+                    if (roomPrice <= value) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

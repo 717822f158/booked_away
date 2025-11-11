@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Travel Explorer</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    .top-bar {
+      background-color: #003580;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .top-bar-left, .top-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .top-bar-right button {
+      background: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #003580;
+      font-weight: bold;
+    }
+    .nav-icons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      background-color: #003580;
+      padding: 10px 0;
+    }
+    .nav-icons div {
+      color: white;
+      cursor: pointer;
+    }
+
+    .hero {
+      background-color: #003580;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .hero h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+
+    /* Removed .search-bar and .options-box styles */
+
+    .section {
+      margin-bottom: 50px;
+      padding: 0 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 15px;
+    }
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .tab {
+      padding: 8px 15px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .blue {
+      background-color: #0071c2;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <strong>BookedAway</strong>
+      <span>INR</span>
+      <span>🇮🇳</span>
+    </div>
+    <div class="top-bar-right">
+      <span>List your property</span>
+       <button onclick="window.location.href='P3.html'">Admin</button>
+      <button onclick="window.location.href='P2.html'">Register</button>
+      <button onclick="window.location.href='P3.html'">Sign in</button>
+    </div>
+  </div>
+
+  <div class="nav-icons">
+   
+  </div>
+
+  <div class="hero">
+    <h1>Find your next stay</h1>
+    <p>Search deals on hotels, homes, and much more…</p>
+  </div>
+
+  <!-- Removed search-bar and options-box -->
+
+  <!-- Homes guests love -->
+  <div class="section">
+    <h2>Homes guests love</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="images/img2.jpeg" alt="Krakow Apartment">
+        <div class="card-content">
+          <h3>Aparthotel Stare Miasto</h3>
+          <p>Old Town, Poland – Excellent (3,251 reviews)</p>
+          <strong>Starting from ₹13,624</strong>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/img1.jpeg" alt="Budapest Apartment">
+        <div class="card-content">
+          <h3>Elegant & Stylish Apartment</h3>
+          <p>Budapest – Wonderful (108 reviews)</p>
+          <strong>Starting from ₹10,492</strong>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/img3.jpeg" alt="7Seasons">
+        <div class="card-content">
+          <h3>7Seasons Apartments</h3>
+          <p>Budapest – Excellent (11,276 reviews)</p>
+          <strong>Starting from ₹11,399</strong>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/img4.jpeg" alt="Barcelona">
+        <div class="card-content">
+          <h3>Midtown Apartments</h3>
+          <p>Barcelona – Wonderful (978 reviews)</p>
+          <strong>Starting from ₹40,220</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trending Destinations -->
+  <div class="section">
+    <h2>Trending destinations</h2>
+    <div class="grid">
+      <div class="card"><img src="images/img5.jpeg" alt="New Delhi"><div class="card-content"><strong>New Delhi</strong></div></div>
+      <div class="card"><img src="images/img6.jpeg" alt="Bangalore"><div class="card-content"><strong>Bangalore</strong></div></div>
+      <div class="card"><img src="images/img7.jpg" alt="Mumbai"><div class="card-content"><strong>Mumbai</strong></div></div>
+      <div class="card"><img src="images/img 8.jpg" alt="Chennai"><div class="card-content"><strong>Chennai</strong></div></div>
+      <div class="card"><img src="images/img9.jpg" alt="Varanasi"><div class="card-content"><strong>Varanasi</strong></div></div>
+    </div>
+  </div>
+
+  <!-- Browse by Property Type -->
+  <div class="section">
+    <h2>Browse by property type</h2>
+    <div class="grid">
+      <div class="card"><img src="images/img10.jpeg" alt="Hotels"><div class="card-content"><strong>Hotels</strong></div></div>
+      <div class="card"><img src="images/img11.jpeg" alt="Apartments"><div class="card-content"><strong>Apartments</strong></div></div>
+      <div class="card"><img src="images/img12.jpg" alt="Resorts"><div class="card-content"><strong>Resorts</strong></div></div>
+      <div class="card"><img src="images/img13.jpg" alt="Villas"><div class="card-content"><strong>Villas</strong></div></div>
+    </div>
+  </div>
+
+  <!-- Quick Trip Planner -->
+  <div class="section">
+    <h2>Quick and easy trip planner</h2>
+    <div class="tabs">
+      <div class="tab blue">City</div>
+      <div class="tab">Beach</div>
+      <div class="tab">Outdoors</div>
+      <div class="tab">Relax</div>
+      <div class="tab">Romance</div>
+      <div class="tab">Food</div>
+    </div>
+    <div class="grid" style="margin-top: 20px;">
+      <div class="card"><img src="images/img14.jpg" alt="Cochin"><div class="card-content"><strong>Cochin - 138 km away</strong></div></div>
+      <div class="card"><img src="images/img15.jpeg" alt="Mysore"><div class="card-content"><strong>Mysore - 148 km away</strong></div></div>
+      <div class="card"><img src="images/img16.jpg" alt="Hassan"><div class="card-content"><strong>Hassan - 241 km away</strong></div></div>
+      <div class="card"><img src="images/img17.jpg" alt="Puttaparthi"><div class="card-content"><strong>Puttaparthi - 362 km away</strong></div></div>
+      <div class="card"><img src="images/img18.jpeg" alt="Allahabad"><div class="card-content"><strong>Allahabad - 1,686 km away</strong></div></div>
+      <div class="card"><img src="images/img19.jpeg" alt="Varanasi"><div class="card-content"><strong>Varanasi - 1,715 km away</strong></div></div>
+    </div>
+  </div>
+
+  <!-- The rest of your second HTML content here (promo, footer, etc.) -->
+
+  <div class="promo-box">
+    <div class="promo-text">
+      <h3>Travel more, save more!</h3>
+      <p>Get instant savings with app-only deals</p>
+      <button onclick ="window.location.href='P8.html'">Show more deals</button>
+    </div>
+  
+  </div>
+
+  <footer style="text-align: center; padding: 20px; background: #003580; color: white;">
+    © 2024 BookedAway - Travel more, pay less
+  </footer>
+
+</body>
+</html>
+
